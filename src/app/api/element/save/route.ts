@@ -15,7 +15,7 @@ type reqBory = {
 }
 
 export async function POST(req: NextRequest) {
-    const DATA = utils.atualDate()
+    const DATA = await  utils.atualDate()
     const { TIPO, NOME_OBJETO, OBJETO, ID_USUARIO }: reqBory = await req.json()
     const result: Result = await modelElements.save(TIPO, NOME_OBJETO, OBJETO, DATA, ID_USUARIO)
     return NextResponse.json(result.value, { status: result.status })
