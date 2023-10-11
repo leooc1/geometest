@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('./form.css');
+
+*{scroll-behavior: smooth;}
+
+/* NAVBAR */
+.nav-bar{
+    @apply transition-all bg-primary flex lg:flex-col justify-between lg:translate-y-1/2 lg:translate-x-0 -translate-x-1/2 items-center lg:w-20 lg:py-10 lg:px-0 fixed left-1/2 lg:bottom-1/2 h-20 px-7 py-0 z-20; 
+}
+/* MATRIZ */
+.menu-matriz{
+    @apply bg-primary transition-all rounded-3xl flex z-20 lg:flex-col justify-between items-center fixed lg:translate-y-1/2 lg:translate-x-0 lg:bottom-1/2 lg:left-10 lg:py-10 lg:px-0 py-0 px-6 gap-4 lg:h-[90%] lg:w-16 h-16 w-[90%] bottom-10 left-1/2 -translate-x-1/2;
+}
+
+.icons-menu{
+    @apply relative bg-primary w-[35px] h-[35px] outline-[12px] outline outline-primary rounded-full left-0 bottom-0;
+    transition: all 0.3s;
+}
+
+.button-active{
+    @apply lg:left-4 lg:bottom-0 left-0 bottom-4;
+}
+
+.input-color{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 50px;
+    height: 50px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.input-color::-webkit-color-swatch{
+    border-radius: 8px;
+}
+
+.scroll-add{    
+    overflow-y: scroll;
+}
+
+.scroll-add::-webkit-scrollbar{
+    width: 2px;
+}
+
+.scroll-add::-webkit-scrollbar-thumb{
+    @apply bg-[#74747477] rounded-md;
+}
+
+.container-menu{
+    @apply bg-[#d9d9d980] transition-all rounded-3xl flex flex-col fixed lg:translate-y-1/2 lg:translate-x-0 lg:bottom-1/2 lg:left-10 pt-6 lg:pl-20 lg:pb-6 pb-20 px-6 gap-4 lg:h-[90%] lg:w-[475px] h-2/3 w-[90%] bottom-10 left-1/2 -translate-x-1/2;
+}
