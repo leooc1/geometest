@@ -25,7 +25,7 @@ export default function Download() {
             URL.revokeObjectURL(urlObjeto);
         }, 0);
     }
-    function downloadBD() {
+    async function downloadBD() {
         const nomeOBJ = prompt('Digite aqui o nome do objeto:')
         const body = {
             TIPO: 1,
@@ -33,7 +33,7 @@ export default function Download() {
             OBJETO: render,
             ID_USUARIO: 28
         }
-        fetch('/api/element/save', {
+        await fetch('/api/element/save', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)

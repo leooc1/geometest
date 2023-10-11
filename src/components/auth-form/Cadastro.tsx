@@ -4,7 +4,7 @@ import AsideCadastro from './AsideCadastro'
 import Link from 'next/link'
 
 export default function Cadastro() {
-    function ReqCadastro(e: any) {
+    async function ReqCadastro(e: any) {
         e.preventDefault()
         const body = {
             NOME: e.target.name.value,
@@ -13,7 +13,7 @@ export default function Cadastro() {
             confirmaSENHA: e.target.pwcompareC.value
         }
         if (body.SENHA === body.confirmaSENHA) {
-            fetch('/api/users/auth/register', {
+            await fetch('/api/users/auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(body)

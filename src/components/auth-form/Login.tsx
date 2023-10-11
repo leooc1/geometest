@@ -6,13 +6,13 @@ import Link from 'next/link'
 export default function Login() {
     const [corzinha, setCorzinha] = useState('#757575')
     const [verSenha, setVerSenha] = useState(false)
-    function ReqLogin(e:any){
+    async function ReqLogin(e:any){
         e.preventDefault()
         const body = {
             EMAIL: e.target.emailL.value,
             SENHA: e.target.passwordL.value
         }
-        fetch('/api/users/auth/login',{
+        await fetch('/api/users/auth/login',{
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(body)
