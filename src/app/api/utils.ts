@@ -4,13 +4,19 @@ import bcrypt from 'bcrypt'
 const utils = {
     //conexão com o banco de dados
     bdConnection: async () => {
-        const conexao: mysql.Connection = await mysql.createConnection({
-            host: "localhost",
-            user: "root",
-            password: "",
-            database: "geometrix"
-        })
-        return conexao
+        try {
+            const conexao: mysql.Connection = await mysql.createConnection({
+                host: "localhost",
+                user: "root",
+                password: "",
+                database: "geometrix"
+            })
+            return conexao
+            
+        } catch (error) {
+            console.log(error)
+            return error
+        }
     },
     //data atual
     atualDate: async () => {
