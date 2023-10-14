@@ -31,14 +31,19 @@ export default function Download() {
             TIPO: 1,
             NOME_OBJETO: nomeOBJ,
             OBJETO: render,
-            ID_USUARIO: 28
+            ID_USUARIO: 2
         }
         await fetch('/api/element/save', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
         })
-            .then(response => console.log(response))
+            .then(response => {
+                if (response.status === 200)
+                    alert('Deu bom!')
+                else
+                    alert('Deu ruim!')
+            })
             .catch(err => console.log(err))
     }
     return (

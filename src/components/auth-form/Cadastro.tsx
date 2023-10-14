@@ -19,10 +19,12 @@ export default function Cadastro() {
                 body: JSON.stringify(body)
             })
                 .then(response => {
-                    console.log(response.status)
+                    if (response.status === 200)
+                        alert('Deu memo!')
+                    else
+                        alert('Deu não!')
                     return response.json()
                 })
-                .then(data => console.log(data))
                 .catch(err => console.log(err))
         }
         else {

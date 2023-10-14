@@ -9,14 +9,14 @@ const modelElements = {
 
     //listar elementos do usuário
     list: async (id_usuario: number) => {
-        const conexao = await utils.bdConnection()
+        const conexao:any = await utils.bdConnection()
         return new Promise<queryPromise>((resolve, reject) => {
             conexao.query(
                 `SELECT U.NOME, E.TIPO, E.NOME_OBJETO, E.DATA, E.ID
             FROM USUARIO U
             JOIN ELEMENTO E ON (U.ID = E.ID_USUARIO)
             WHERE U.ID = ?`, [id_usuario],
-                (err, result) => {
+                (err:any, result:any) => {
                     if (err) {
                         reject({
                             status: 400,
@@ -36,13 +36,13 @@ const modelElements = {
 
     //salvar elemento no banco
     save: async (tipo: number, nome_objeto: string, objeto: JSON, data: string, id_usuario: number) => {
-        const conexao = await utils.bdConnection()
+        const conexao:any = await utils.bdConnection()
         return new Promise<queryPromise>((resolve, reject) => {
             conexao.query(`
             INSERT INTO
             ELEMENTO 
             VALUES ('0', ?, ?, ?, ?, ?)`, [tipo, nome_objeto, JSON.stringify(objeto), data, id_usuario],
-                (err, result) => {
+                (err:any, result:any) => {
                     if (err) {
                         reject({
                             status: 400,
@@ -62,7 +62,7 @@ const modelElements = {
 
     // //buscar elemento por data
     dateFilter: async (Data_Inicio: string, Data_Fim: string, id_usuario: number) => {
-        const conexao = await utils.bdConnection()
+        const conexao:any = await utils.bdConnection()
         return new Promise<queryPromise>((resolve, reject) => {
             conexao.query(`
         SELECT U.NOME, E.TIPO, E.NOME_OBJETO, E.DATA, E.ID
@@ -70,7 +70,7 @@ const modelElements = {
         JOIN ELEMENTO E ON (U.ID = E.ID_USUARIO)
         WHERE E.DATA BETWEEN ? AND ?
         AND U.ID = ?`, [Data_Inicio, Data_Fim, id_usuario],
-                (err, result) => {
+                (err:any, result:any) => {
 
                     if (err) {
                         reject({
@@ -107,13 +107,13 @@ const modelElements = {
 
     // //deletar elemento
     delete: async (id_elemento: number) => {
-        const conexao = await utils.bdConnection()
+        const conexao:any = await utils.bdConnection()
         return new Promise<queryPromise>((resolve, reject) => {
             conexao.query(`
         DELETE
         FROM ELEMENTO 
         WHERE ID = ?`, [id_elemento],
-                (err, result) => {
+                (err:any, result:any) => {
                     if (err) {
                         reject({
                             status: 400,

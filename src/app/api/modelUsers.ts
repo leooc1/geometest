@@ -9,13 +9,13 @@ const modelUsers = {
 
     //cadastro
     register: async (nome: string, email: string, senha: string, date: string) => {
-        const conexao = await utils.bdConnection()
+        const conexao: any = await utils.bdConnection()
         return new Promise<queryPromise>((resolve, reject) => {
             conexao.query(`
         SELECT U.EMAIL
         FROM USUARIO U
         WHERE U.EMAIL = ?`, [email],
-                (err, result) => {
+                (err: any, result: []) => {
                     if (err) {
                         reject({
                             status: 410,
@@ -28,7 +28,7 @@ const modelUsers = {
                         INSERT INTO 
                         USUARIO 
                         VALUES('0', ?, ?, ?, ?)`, [nome, email, senha, date],
-                                (err) => {
+                                (err: any) => {
                                     if (err) {
                                         reject({
                                             status: 410,
@@ -38,7 +38,7 @@ const modelUsers = {
                                     else {
                                         resolve({
                                             status: 200,
-                                            value: 'Foi'
+                                            value: 'FOI'
                                         })
                                     }
                                 })
@@ -55,13 +55,13 @@ const modelUsers = {
 
     //login
     login: async (email: string, senha: string) => {
-        const conexao = await utils.bdConnection()
+        const conexao: any = await utils.bdConnection()
         return new Promise<queryPromise>((resolve, reject) => {
             conexao.query(`
-        SELECT u.nome, U.EMAIL, U.SENHA
+        SELECT U.ID
     FROM USUARIO U
     WHERE U.EMAIL = ? `, [email],
-                async (err, result) => {
+                async (err: any, result: any) => {
                     if (err) {
                         reject({
                             status: 400,
@@ -73,7 +73,7 @@ const modelUsers = {
                             if (await utils.compareHash(senha, result[0].SENHA)) {
                                 resolve({
                                     status: 200,
-                                    value: 'Logado'
+                                    value: result
                                 })
                             }
                             else {
