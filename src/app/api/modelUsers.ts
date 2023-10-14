@@ -45,7 +45,7 @@ const modelUsers = {
                         }
                         else
                             resolve({
-                                status: 200,
+                                status: 410,
                                 value: 'Tem esse emei já, cabaço'
                             })
                     }
@@ -58,7 +58,7 @@ const modelUsers = {
         const conexao: any = await utils.bdConnection()
         return new Promise<queryPromise>((resolve, reject) => {
             conexao.query(`
-        SELECT U.ID
+        SELECT U.ID, U.SENHA
     FROM USUARIO U
     WHERE U.EMAIL = ? `, [email],
                 async (err: any, result: any) => {
@@ -73,7 +73,7 @@ const modelUsers = {
                             if (await utils.compareHash(senha, result[0].SENHA)) {
                                 resolve({
                                     status: 200,
-                                    value: result
+                                    value: result[0].ID
                                 })
                             }
                             else {

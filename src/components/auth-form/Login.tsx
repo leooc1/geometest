@@ -27,6 +27,7 @@ export default function Login() {
                     alert('Errou aí!')
                 return response.json()
             })
+            .then(data=>console.log(data))
             .catch(err => console.log(err))
     }
     return (
