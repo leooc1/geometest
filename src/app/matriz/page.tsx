@@ -10,16 +10,16 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 export default function Matriz() {
   const [id, setID] = useState('')
-  const [logado, setLogado] = useState(true)
+  /* const [logado, setLogado] = useState(true)
   useEffect(()=>{
     if(!logado){
       location.assign('/login-cadastro') 
     }
-  },[logado])
+  },[logado]) */
     const getID = async () => {
       const trem = await utilsToken.getToken()
-      if(trem) setLogado(true)
-      else setLogado(false)
+      /* if(trem) setLogado(true)
+      else setLogado(false) */
       setID(trem)
     }
     getID()
