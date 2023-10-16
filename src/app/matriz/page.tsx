@@ -25,10 +25,7 @@ export default function Matriz() {
     getID()
   return (
     <>
-      <Head>
-        <title>MATRIZ</title>
-        <link rel="shortcut icon" href="/logos/logo.png" type="image/x-icon" />
-      </Head>
+      
       <div className='w-full h-screen bg-secondary'>
         <MatrizProvider>
           <>

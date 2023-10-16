@@ -16,7 +16,6 @@ export default function Home() {
     window.addEventListener('scroll', () => {
       const bottom = document.getElementById('home') as HTMLElement
       const hContainer = (bottom?.getBoundingClientRect().bottom - innerHeight)
-      console.log(hContainer)
       if (hContainer >= 0) {
         setMove(hContainer)
       } else {
@@ -32,10 +31,6 @@ export default function Home() {
   getID()
   return (
     <>
-      <Head>
-        <title>GEOMETRIX</title>
-        <link rel="shortcut icon" href="/logos/logo.png" type="image/x-icon" />
-      </Head>
       <main className="bg-secondary w-full h-full scroll-smooth">
         <NavBar />
         <section id="home" className="h-[200vh] w-full bg-secondary">
@@ -54,7 +49,7 @@ export default function Home() {
             }}>X</span>
           </p>
         </section>
-        <div id="sobre" className="h-screen w-full flex justify-center items-center bg-purple-400"><Link href='/'>clica aí</Link></div>
+        <div id="sobre" className="h-screen w-full flex justify-center items-center bg-purple-400"><Link href='#'>clica aí</Link></div>
         <div id="algebra" className="h-screen w-full flex justify-center items-center bg-purple-500"><Link href='/algebra'>clica aí</Link></div>
         <Matriz />
         <div id="fisica" className="h-screen w-full flex justify-center items-center bg-purple-700"><Link href='/fisica'>clica aí</Link></div>

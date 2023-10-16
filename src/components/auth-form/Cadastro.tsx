@@ -26,10 +26,6 @@ export default function Cadastro() {
                         alert('Deu não!')
                     return response.json()
                 })
-                .then(data => {
-                    utilsToken.armazenarToken(data)
-                }
-                )
                 .catch(err => console.log(err))
         }
         else {
