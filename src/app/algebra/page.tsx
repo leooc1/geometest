@@ -4,18 +4,7 @@ import { useEffect, useState } from 'react';
 import { VictoryChart, VictoryLine, VictoryTheme } from 'victory';
 
 export default function Algebra() {
-    const [logado, setLogado] = useState(true)
-    useEffect(() => {
-        if (!logado) {
-            location.assign('/login-cadastro')
-        }
-    }, [logado])
-    const getID = async () => {
-        const trem = await utilsToken.getToken()
-        if (trem) setLogado(true)
-        else setLogado(false)
-    }
-    getID()
+    
     const [valueA, setValueA] = useState(0)
     const [valueB, setValueB] = useState(0)
     const [valueC, setValueC] = useState(0)

@@ -12,7 +12,7 @@ const utilsToken = {
         const token = cookies.tokenGX || ''
         return token
     },
-    getToken: async () => {
+    getId: async () => {
         const token = await utilsToken.pegarToken() || ''
         const id = await fetch(`/api/users/token/${token}`)
             .then(response => response.json())

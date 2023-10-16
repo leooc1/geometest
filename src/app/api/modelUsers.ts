@@ -10,8 +10,8 @@ const modelUsers = {
     //cadastro
     register: async (nome: string, email: string, senha: string, date: string) => {
         const conexao: any = await utils.bdConnection()
-        return new Promise<queryPromise>((resolve, reject) => {
-            conexao.query(`
+        return new Promise<queryPromise>(async (resolve, reject) => {
+            await conexao.query(`
         SELECT U.EMAIL
         FROM USUARIO U
         WHERE U.EMAIL = ?`, [email],
@@ -50,14 +50,15 @@ const modelUsers = {
                             })
                     }
                 })
+                
         })
     },
 
     //login
     login: async (email: string, senha: string) => {
         const conexao: any = await utils.bdConnection()
-        return new Promise<queryPromise>((resolve, reject) => {
-            conexao.query(`
+        return new Promise<queryPromise>(async (resolve, reject) => {
+            await conexao.query(`
         SELECT U.ID, U.SENHA
     FROM USUARIO U
     WHERE U.EMAIL = ? `, [email],
@@ -92,6 +93,7 @@ const modelUsers = {
                     }
                 }
             )
+            
         })
     }
 }

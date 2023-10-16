@@ -6,18 +6,6 @@ import { Physics, RigidBody } from '@react-three/rapier'
 import utilsToken from '@/components/utils/token'
 
 export default function Fisica() {
-    const [logado, setLogado] = useState(true)
-    useEffect(() => {
-        if (!logado) {
-            location.assign('/login-cadastro')
-        }
-    }, [logado])
-    const getID = async () => {
-        const trem = await utilsToken.getToken()
-        if (trem) setLogado(true)
-        else setLogado(false)
-    }
-    getID()
     return (
         <div className='w-screen h-screen'>
             <Canvas shadows camera={{ position: [10, 10, 10], fov: 80 }}>

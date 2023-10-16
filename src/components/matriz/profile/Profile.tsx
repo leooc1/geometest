@@ -1,13 +1,21 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Download from './Download'
+import utilsToken from '@/components/utils/token'
 
-export default function Profile({ id }: { id: string | number }) {
+export default function Profile() {
+    const [idUser, setId] = useState('')
+    const getID = async () => {
+        const trem = await utilsToken.getId()
+        setId(trem)
+    }
+    getID()
     const [active, setActive] = useState(false)
+
     return (
         <div className={`fixed top-10 right-10 bg-primary p-2 rounded-full ${active ? '' : 'h-14'}`}>
             <button onClick={() => setActive(!active)}
                 className="w-10 h-10 rounded-full bg-white">
-                {id}
+                {idUser}
             </button>
             {active ? <Download /> : null}
         </div>

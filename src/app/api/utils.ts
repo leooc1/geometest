@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt'
+import mysql from 'mysql'
 import mysql2 from 'mysql2'
 const jwt = require('jsonwebtoken')
 
@@ -6,13 +7,18 @@ const utils = {
     //conexão com o banco de dados
 
     bdConnection: async () => {
-        const MYSQLUSER = process.env.MYSQLUSER
+        /* const MYSQLUSER = process.env.MYSQLUSER
         const MYSQLPORT = process.env.MYSQLPORT
         const MYSQLPASSWORD = process.env.MYSQLPASSWORD
         const MYSQLHOST = process.env.MYSQLHOST
-        const MYSQLDATABASE = process.env.MYSQLDATABASE
-        const conexao: mysql2.Connection = await mysql2.createConnection
-            (`mysql://${MYSQLUSER}:${MYSQLPASSWORD}@${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}`)
+        const MYSQLDATABASE = process.env.MYSQLDATABASE */
+        // (`mysql://${MYSQLUSER}:${MYSQLPASSWORD}@${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}`)
+        const conexao: mysql.Connection = await mysql.createConnection({
+            host: "localhost",
+            user: "root",
+            password: "",
+            database: "geometrix",
+        })
 
         return new Promise((resolve, reject) => {
             conexao.connect((err) => {
