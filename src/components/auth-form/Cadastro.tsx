@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import AsideCadastro from './AsideCadastro'
 import Link from 'next/link'
-import utilsToken from '../utils/token'
+// import utilsToken from '../utils/token'
 
 export default function Cadastro() {
     async function ReqCadastro(e: any) {

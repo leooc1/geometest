@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import AsideLogin from './AsideLogin'
 import Link from 'next/link'
-import utilsToken from '../utils/token'
+// import utilsToken from '../utils/token'
 
 export default function Login() {
     const [corzinha, setCorzinha] = useState('#757575')
@@ -25,7 +25,8 @@ export default function Login() {
                 return response.json()
             })
             .then(data => {
-                utilsToken.armazenarToken(data)
+                // utilsToken.armazenarToken(data)
+                data
             }
             )
             .catch(err => console.log(err))

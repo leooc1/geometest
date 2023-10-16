@@ -4,7 +4,7 @@ import Config from '@/components/matriz/Config'
 import Menu from '@/components/matriz/Menu'
 import Objects from '@/components/matriz/Objects'
 import Profile from '@/components/matriz/profile/Profile'
-import utilsToken from '@/components/utils/token'
+// import utilsToken from '@/components/utils/token'
 import { MatrizProvider } from '@/context/MatrizContext'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
@@ -16,13 +16,13 @@ export default function Matriz() {
       location.assign('/login-cadastro') 
     }
   },[logado]) */
-    const getID = async () => {
-      const trem = await utilsToken.getToken()
-      /* if(trem) setLogado(true)
-      else setLogado(false) */
-      setID(trem)
-    }
-    getID()
+    // const getID = async () => {
+    //   const trem = await utilsToken.getToken()
+    //   /* if(trem) setLogado(true)
+    //   else setLogado(false) */
+    //   setID(trem)
+    // }
+    // getID()
   return (
     <>
       

@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken')
+/* const jwt = require('jsonwebtoken')
 
 const utilsToken = {
 
@@ -17,4 +17,4 @@ const utilsToken = {
     }
 }
 
-export default utilsToken
+export default utilsToken */

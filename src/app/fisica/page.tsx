@@ -3,7 +3,7 @@ import { Suspense, useEffect, useState } from 'react'
 import { Box, OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Physics, RigidBody } from '@react-three/rapier'
-import utilsToken from '@/components/utils/token'
+// import utilsToken from '@/components/utils/token'
 
 export default function Fisica() {
     /* const [logado, setLogado] = useState(true)
