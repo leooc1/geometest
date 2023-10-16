@@ -2,6 +2,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import AsideLogin from './AsideLogin'
 import Link from 'next/link'
+import utilsToken from '../utils/token'
 
 export default function Login() {
     const [corzinha, setCorzinha] = useState('#757575')
@@ -21,13 +22,12 @@ export default function Login() {
                 if (response.status === 200) setCorzinha("#00ff00")
                 else if (response.status === 404) setCorzinha("#ff0000")
                 else setCorzinha("#757575")
-                if (response.status === 200)
-                    alert('Logado!')
-                else
-                    alert('Errou aí!')
                 return response.json()
             })
-            .then(data=>console.log(data))
+            .then(data => {
+                utilsToken.armazenarToken(data)
+            }
+            )
             .catch(err => console.log(err))
     }
     return (

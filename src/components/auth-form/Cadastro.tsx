@@ -2,6 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import AsideCadastro from './AsideCadastro'
 import Link from 'next/link'
+import utilsToken from '../utils/token'
 
 export default function Cadastro() {
     async function ReqCadastro(e: any) {
@@ -25,6 +26,10 @@ export default function Cadastro() {
                         alert('Deu não!')
                     return response.json()
                 })
+                .then(data => {
+                    utilsToken.armazenarToken(data)
+                }
+                )
                 .catch(err => console.log(err))
         }
         else {

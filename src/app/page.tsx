@@ -1,13 +1,18 @@
 'use client'
 import Matriz from "@/components/Matriz"
 import NavBar from "@/components/NavBar"
+import utilsToken from "@/components/utils/token"
 import Head from "next/head"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 
 export default function Home() {
   const [move, setMove] = useState(1000)
+  const [logado, setLogado] = useState(true)
   useEffect(() => {
+    if (!logado) {
+      location.assign('/login-cadastro')
+    }
     window.addEventListener('scroll', () => {
       const bottom = document.getElementById('home') as HTMLElement
       const hContainer = (bottom?.getBoundingClientRect().bottom - innerHeight)
@@ -18,7 +23,13 @@ export default function Home() {
         setMove(0)
       }
     })
-  }, [move])
+  }, [move, logado])
+  const getID = async () => {
+    const trem = await utilsToken.getToken()
+    if (trem) setLogado(true)
+    else setLogado(false)
+  }
+  getID()
   return (
     <>
       <Head>
@@ -44,9 +55,9 @@ export default function Home() {
           </p>
         </section>
         <div id="sobre" className="h-screen w-full flex justify-center items-center bg-purple-400"><Link href='/'>clica aí</Link></div>
-        <div id="algebra" className="h-screen w-full flex justify-center items-center bg-purple-500"><Link href='/'>clica aí</Link></div>
+        <div id="algebra" className="h-screen w-full flex justify-center items-center bg-purple-500"><Link href='/algebra'>clica aí</Link></div>
         <Matriz />
-        <div id="fisica" className="h-screen w-full flex justify-center items-center bg-purple-700"><Link href='/'>clica aí</Link></div>
+        <div id="fisica" className="h-screen w-full flex justify-center items-center bg-purple-700"><Link href='/fisica'>clica aí</Link></div>
       </main>
     </>
   )

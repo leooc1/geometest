@@ -28,7 +28,7 @@ const modelUsers = {
                         INSERT INTO 
                         USUARIO 
                         VALUES('0', ?, ?, ?, ?)`, [nome, email, senha, date],
-                                (err: any) => {
+                                (err: any, result:any) => {
                                     if (err) {
                                         reject({
                                             status: 410,
@@ -38,7 +38,7 @@ const modelUsers = {
                                     else {
                                         resolve({
                                             status: 200,
-                                            value: 'FOI'
+                                            value: result.insertId
                                         })
                                     }
                                 })

@@ -46,22 +46,22 @@ const utils = {
             .then(response => response)
             .catch(err => err)
     },
-    Token: async (id:number) => {
-        var token = await jwt.sign({ id: id }, process.env.SECRET)
+    gerarToken: async (id: number) => {
+        const token = await jwt.sign({ id: id }, process.env.SECRET, { expiresIn: 60 * 60 * 24 * 7 })
         return token;
 
     },
-    searchID: async (token: any) => {
+    searchID: async (token: string) => {
         return new Promise((resolve, reject) => {
             jwt.verify(token, process.env.SECRET, function (err: any, decoded: any) {
                 if (err)
                     reject(err)
                 else
-                    resolve(decoded.id) // bar
+                    resolve(decoded.id) // 
             })
         })
 
-    }
+    },
 }
 
 export default utils
