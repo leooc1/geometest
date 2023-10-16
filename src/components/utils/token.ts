@@ -1,12 +1,16 @@
-/* const jwt = require('jsonwebtoken')
+import { setCookie, parseCookies } from "nookies"
 
 const utilsToken = {
 
     armazenarToken: (token: string) => {
-        localStorage.setItem('tokenGX', token)
+        setCookie(null,'tokenGX', token, {
+            maxAge: 60*60*24*7
+        })
     },
     pegarToken: () => {
-        return localStorage.getItem('tokenGX')
+        const cookies = parseCookies()
+        const token = cookies.tokenGX || ''
+        return token
     },
     getToken: async () => {
         const token = await utilsToken.pegarToken() || ''
@@ -17,4 +21,4 @@ const utilsToken = {
     }
 }
 
-export default utilsToken */
+export default utilsToken

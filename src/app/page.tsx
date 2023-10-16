@@ -1,18 +1,17 @@
 'use client'
 import Matriz from "@/components/Matriz"
 import NavBar from "@/components/NavBar"
-// import utilsToken from "@/components/utils/token"
-import Head from "next/head"
+import utilsToken from "@/components/utils/token"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 
 export default function Home() {
   const [move, setMove] = useState(1000)
-  // const [logado, setLogado] = useState(true)
+  const [logado, setLogado] = useState(true)
   useEffect(() => {
-    // if (!logado) {
-    //   location.assign('/login-cadastro')
-    // }
+    if (!logado) {
+      location.assign('/login-cadastro')
+    }
     window.addEventListener('scroll', () => {
       const bottom = document.getElementById('home') as HTMLElement
       const hContainer = (bottom?.getBoundingClientRect().bottom - innerHeight)
@@ -22,13 +21,13 @@ export default function Home() {
         setMove(0)
       }
     })
-  }, [move/* , logado */])
-  /* const getID = async () => {
+  }, [move, logado])
+  const getID = async () => {
     const trem = await utilsToken.getToken()
     if (trem) setLogado(true)
     else setLogado(false)
   }
-  getID() */
+  getID()
   return (
     <>
       <main className="bg-secondary w-full h-full scroll-smooth">
