@@ -4,7 +4,7 @@ const utilsToken = {
 
     armazenarToken: (token: string) => {
         setCookie(null,'tokenGX', token, {
-            maxAge: 60*60*24*7
+            maxAge: 60*60*24*7,
         })
     },
     pegarToken: () => {

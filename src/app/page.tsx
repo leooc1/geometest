@@ -37,10 +37,10 @@ export default function Home() {
             }}>X</span>
           </p>
         </section>
-        <div id="sobre" className="h-screen w-full flex justify-center items-center bg-purple-400"><Link href='#'>clica aí</Link></div>
-        <div id="algebra" className="h-screen w-full flex justify-center items-center bg-purple-500"><Link href='/algebra'>clica aí</Link></div>
+        <div id="sobre" className="h-screen w-full flex justify-center items-center bg-gray-700 text-white tracking-[3px] uppercase"><Link href='#'>clica aí pra nada</Link></div>
+        <div id="algebra" className="h-screen w-full flex justify-center items-center bg-gray-700 text-white tracking-[3px] uppercase"><Link href='/algebra'>parabolinha di cria?</Link></div>
         <Matriz />
-        <div id="fisica" className="h-screen w-full flex justify-center items-center bg-purple-700"><Link href='/fisica'>clica aí</Link></div>
+        <div id="fisica" className="h-screen w-full flex justify-center items-center bg-gray-700 text-white tracking-[3px] uppercase"><Link href='/fisica'>físico + turista . . .</Link></div>
       </main>
     </>
   )

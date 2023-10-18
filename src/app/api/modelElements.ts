@@ -9,14 +9,14 @@ const modelElements = {
 
     //listar elementos do usuário
     list: async (id_usuario: number) => {
-        const conexao:any = await utils.bdConnection()
+        const conexao: any = await utils.bdConnection()
         return new Promise<queryPromise>(async (resolve, reject) => {
             await conexao.query(
-                `SELECT U.NOME, E.TIPO, E.NOME_OBJETO, E.DATA, E.ID
+                `SELECT U.NOME, E.TIPO, E.NOME_OBJETO, E.OBJETO, E.DATA, E.ID
             FROM USUARIO U
             JOIN ELEMENTO E ON (U.ID = E.ID_USUARIO)
             WHERE U.ID = ?`, [id_usuario],
-                (err:any, result:any) => {
+                (err: any, result: any) => {
                     if (err) {
                         reject({
                             status: 400,
@@ -36,13 +36,13 @@ const modelElements = {
 
     //salvar elemento no banco
     save: async (tipo: number, nome_objeto: string, objeto: JSON, data: string, id_usuario: number) => {
-        const conexao:any = await utils.bdConnection()
+        const conexao: any = await utils.bdConnection()
         return new Promise<queryPromise>(async (resolve, reject) => {
             await conexao.query(`
             INSERT INTO
             ELEMENTO 
             VALUES ('0', ?, ?, ?, ?, ?)`, [tipo, nome_objeto, JSON.stringify(objeto), data, id_usuario],
-                (err:any, result:any) => {
+                (err: any, result: any) => {
                     if (err) {
                         reject({
                             status: 400,
@@ -62,15 +62,15 @@ const modelElements = {
 
     // //buscar elemento por data
     dateFilter: async (Data_Inicio: string, Data_Fim: string, id_usuario: number) => {
-        const conexao:any = await utils.bdConnection()
+        const conexao: any = await utils.bdConnection()
         return new Promise<queryPromise>(async (resolve, reject) => {
             await conexao.query(`
-        SELECT U.NOME, E.TIPO, E.NOME_OBJETO, E.DATA, E.ID
+        SELECT U.NOME, E.TIPO, E.NOME_OBJETO,  E.OBJETO, E.DATA, E.ID
         FROM USUARIO U
         JOIN ELEMENTO E ON (U.ID = E.ID_USUARIO)
         WHERE E.DATA BETWEEN ? AND ?
         AND U.ID = ?`, [Data_Inicio, Data_Fim, id_usuario],
-                (err:any, result:any) => {
+                (err: any, result: any) => {
 
                     if (err) {
                         reject({
@@ -102,18 +102,18 @@ const modelElements = {
                             })
                     }
                 })
-            })
+        })
     },
 
     // //deletar elemento
     delete: async (id_elemento: number) => {
-        const conexao:any = await utils.bdConnection()
+        const conexao: any = await utils.bdConnection()
         return new Promise<queryPromise>(async (resolve, reject) => {
             await conexao.query(`
         DELETE
         FROM ELEMENTO 
         WHERE ID = ?`, [id_elemento],
-                (err:any, result:any) => {
+                (err: any, result: any) => {
                     if (err) {
                         reject({
                             status: 400,
@@ -128,8 +128,43 @@ const modelElements = {
                     }
 
                 })
-            })
+        })
     },
+
+    // //buscar elemento pelo id
+    searchElement: async (id_elemento: number) => {
+        const conexao: any = await utils.bdConnection()
+        return new Promise<queryPromise>(async (resolve, reject) => {
+            await conexao.query(`
+        SELECT OBJETO
+        FROM ELEMENTO 
+        WHERE ID = ?`, [id_elemento],
+                (err: any, result: any) => {
+                    if (err) {
+                        reject({
+                            status: 400,
+                            value: "err: " + err.sqlMessage
+                        });
+                    }
+                    else {
+                        if (result.length>0){
+                            resolve({
+                                status: 200,
+                                value: result[0].OBJETO
+                            });
+                        }
+                        else{
+
+                            resolve({
+                                status: 404,
+                                value: '[]'
+                            })
+                        }
+                    }
+
+                })
+        })
+    }
 }
 
 export default modelElements

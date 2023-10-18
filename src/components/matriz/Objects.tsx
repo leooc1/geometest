@@ -1,11 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import ObjectModels from './ObjectModels'
 import { MatrizContext } from '@/context/MatrizContext'
+import { parseCookies, destroyCookie } from 'nookies'
 
 export default function Objects() {
-    const { bgColor, render, setColor, setWireFrame, setIndex, setPosition, setScale, setRotation } = useContext(MatrizContext)
+    const { bgColor, render, setRender, setColor, setWireFrame, setIndex, setPosition, setScale, setRotation } = useContext(MatrizContext)
 
     type Object = {
         id: string,
@@ -27,6 +28,19 @@ export default function Objects() {
         setPosition([e.eventObject.position.x, e.eventObject.position.y, e.eventObject.position.z])
         setScale([e.eventObject.scale.x, e.eventObject.scale.y, e.eventObject.scale.z])
         setRotation([e.eventObject.rotation.x, e.eventObject.rotation.y, e.eventObject.rotation.z])
+    }
+
+    async function getElement(id:string) {
+        await fetch(`/api/element/${id}`)
+        .then(response=>response.json())
+        .then(response=>setRender(JSON.parse(response)))
+        .catch(err=>console.log(err))
+    }
+
+    const cookies = parseCookies()
+    if (cookies.elementUse) {
+        getElement(cookies.elementUse)
+        destroyCookie(null, 'elementUse')
     }
 
     return (

@@ -10,3 +10,9 @@ export async function DELETE(req: NextRequest, { params }: { params: { id_elemen
   const result:Result = await modelElements.delete(Number(id_elemento))
   return NextResponse.json(result.value, { status: result.status })
 }
+
+export async function GET(req: NextRequest, { params }: { params: { id_elemento: string } }) {
+  const id_elemento = params.id_elemento
+  const result:Result = await modelElements.searchElement(Number(id_elemento))
+  return NextResponse.json(result.value, { status: result.status })
+}

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 
 export default function NavBar() {
-  const [top, setTop] = useState(1)
+  const [top, setTop] = useState(0)
  
   return (
     <nav className={`nav-bar ${top === 0 ?
