@@ -13,7 +13,7 @@ const utils = {
         const MYSQLHOST = process.env.MYSQLHOST
         const MYSQLDATABASE = process.env.MYSQLDATABASE */
         // (`mysql://${MYSQLUSER}:${MYSQLPASSWORD}@${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}`)
-        const conexao: Connection = await mysql2.createConnection('mysql://root:DpCQOmER62nz9d5SWWoV@containers-us-west-42.railway.app:7849/railway')
+        const conexao: Connection = await mysql2.createConnection(`mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`)
 
         return new Promise((resolve, reject) => {
             conexao.connect((err) => {
