@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react'
+'use client'
+import { MatrizContext } from '@/context/MatrizContext'
 import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
+import { useContext, useEffect } from 'react'
 import ObjectModels from './ObjectModels'
-import { MatrizContext } from '@/context/MatrizContext'
-import { parseCookies, destroyCookie } from 'nookies'
 
 export default function Objects() {
     const { bgColor, render, setRender, setColor, setWireFrame, setIndex, setPosition, setScale, setRotation } = useContext(MatrizContext)
@@ -30,18 +30,20 @@ export default function Objects() {
         setRotation([e.eventObject.rotation.x, e.eventObject.rotation.y, e.eventObject.rotation.z])
     }
 
-    async function getElement(id:string) {
+    async function getElement(id: string) {
         await fetch(`/api/element/${id}`)
-        .then(response=>response.json())
-        .then(response=>setRender(JSON.parse(response)))
-        .catch(err=>console.log(err))
+            .then(response => response.json())
+            .then(response => setRender(JSON.parse(response)))
+            .catch(err => console.log(err))
     }
 
-    const cookies = parseCookies()
-    if (cookies.elementUse) {
-        getElement(cookies.elementUse)
-        destroyCookie(null, 'elementUse')
-    }
+    useEffect(() => {
+        const idElement = localStorage.getItem('elementUse')
+        if (idElement) {
+            getElement(idElement)
+            localStorage.removeItem('elementUse')
+        }
+    })
 
     return (
         <Canvas className='w-screen h-screen' style={{ backgroundColor: bgColor }}>

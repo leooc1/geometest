@@ -1,15 +1,17 @@
 'use client'
 import utilsToken from "@/components/utils/token"
-import { useEffect, useState } from "react"
-import { setCookie } from 'nookies'
 import Image from "next/image"
 import Link from "next/link"
+import { useEffect, useState } from "react"
 
 export default function Listinha() {
-    const [refresh, setRefresh] = useState(false)
+    const [refresh, setRefresh] = useState(true)
     const [itens, setItens]: any = useState([])
     useEffect(() => {
         ListarElements()
+        setInterval(()=>{
+            setRefresh(false)
+        },1000)
     }, [refresh])
     /* useEffect(() => {
         async function getItens() {
@@ -75,6 +77,10 @@ export default function Listinha() {
                 <input className='w-32' type="date" name="dataFim" id="dataFim" />
                 <button className='w-32 bg-white' type="submit">Filtrar</button>
             </form>
+            {refresh?
+            <div className="flex justify-center items-center w-full h-full mt-3">
+                <Image width={100} height={100} alt="loading" src={'/loading.svg'}/>
+            </div>:
             <ul className="flex flex-col gap-2 p-2">
                 {itens[0]?.TIPO ?
                     itens.map((item: any, key: number) =>
@@ -85,9 +91,7 @@ export default function Listinha() {
                         <div className="flex flex-col float-right -mt-11 gap-3">
                             <button className="bg-green-500 font-semibold py-1 px-2 rounded-xl"
                                 onClick={async () => {
-                                    await setCookie(null, 'elementUse', item.ID, {
-                                        maxAge: 300,
-                                    })
+                                    await localStorage.setItem('elementUse', item.ID)
                                     location.assign('/matriz')
                                 }}>Usar</button>
                             <button id={item.ID} className="bg-red-500 font-semibold py-1 px-2 rounded-xl" onClick={async (e: any) => {
@@ -97,7 +101,7 @@ export default function Listinha() {
                                 })
                                     .then(response => console.log(response))
                                     .catch(err => console.log(err))
-                                setRefresh(!refresh)
+                                setRefresh(true)
                                 let inicio: any = document.getElementById('dataInicio')
                                 let fim: any = document.getElementById('dataFim')
                                 inicio.value = ''
@@ -107,6 +111,7 @@ export default function Listinha() {
                     </li>))
                     : <p className="text-center">Tem nada não</p>}
             </ul>
+            }
         </div>
     )
 }

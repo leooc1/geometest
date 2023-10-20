@@ -10,6 +10,12 @@ type reqBory = {
 export async function POST(req: NextRequest) {
     const { EMAIL, SENHA }: reqBory = await req.json()
     const result: any = await modelUsers.login(EMAIL, SENHA)
-    const token = await utils.gerarToken(result.value)
+    let token
+    if (result.status === 200)
+        token = await utils.gerarToken(result.value)
+        // token = result.value
+    else
+        token = result.value
+
     return NextResponse.json(token, { status: result.status })
 }
