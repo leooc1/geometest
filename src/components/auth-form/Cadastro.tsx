@@ -22,14 +22,19 @@ export default function Cadastro() {
             })
                 .then(async (response) => {
                     if (response.status === 200) {
-                        const id = await response.json()
-                        utilsToken.armazenarToken(id.value)
                         alert('Deu memo!')
+                        return response.json()
+                    }
+                    else{
+                        alert('Deu não!')
+                        return false
+                    }
+                })
+                .then(async (data)=>{
+                    if(data){
+                        await utilsToken.armazenarToken(data)
                         location.reload()
                     }
-                    else
-                        alert('Deu não!')
-                    return response.json()
                 })
                 .catch(err => console.log(err))
         }
