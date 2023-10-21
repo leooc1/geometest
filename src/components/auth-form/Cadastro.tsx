@@ -2,6 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import AsideCadastro from './AsideCadastro'
 import Link from 'next/link'
+import utilsToken from '../utils/token'
 // import utilsToken from '../utils/token'
 
 export default function Cadastro() {
@@ -19,10 +20,13 @@ export default function Cadastro() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(body)
             })
-                .then(response => {
-                    console.log(response.status)
-                    if (response.status === 200)
+                .then(async (response) => {
+                    if (response.status === 200) {
+                        const id = await response.json()
+                        utilsToken.armazenarToken(id.value)
                         alert('Deu memo!')
+                        location.reload()
+                    }
                     else
                         alert('Deu não!')
                     return response.json()

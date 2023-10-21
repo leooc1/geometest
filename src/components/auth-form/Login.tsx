@@ -18,16 +18,18 @@ export default function Login() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
         })
-            .then(response => {
-                if (response.status === 200) setCorzinha("#00ff00")
+            .then(async (response) => {
+                if (response.status === 200) {
+                    setCorzinha("#00ff00")
+                    const id = await response.json()
+                    utilsToken.armazenarToken(id.value)
+                    alert('Deu memo!')
+                    location.reload()
+                }
                 else if (response.status === 404) setCorzinha("#ff0000")
                 else setCorzinha("#757575")
                 return response.json()
             })
-            .then(data => {
-                utilsToken.armazenarToken(data)
-            }
-            )
             .catch(err => console.log(err))
     }
     return (
