@@ -17,6 +17,9 @@ export async function POST(req: NextRequest) {
     const { NOME, EMAIL, SENHA }: reqBory = await req.json()
     const DATA = await utils.atualDate()
     const hashPassword = await utils.hash(SENHA)
-    const result: Result = await modelUsers.register(NOME, EMAIL, hashPassword, DATA)
+    let result: Result = await modelUsers.verifyEmailExist(EMAIL)
+    if(result.status === 200){
+        result = await modelUsers.register(NOME, EMAIL, hashPassword, DATA)
+    }
     return NextResponse.json(result.value, { status: result.status })
 }

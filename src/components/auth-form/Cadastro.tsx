@@ -20,6 +20,7 @@ export default function Cadastro() {
                 body: JSON.stringify(body)
             })
                 .then(response => {
+                    console.log(response.status)
                     if (response.status === 200)
                         alert('Deu memo!')
                     else

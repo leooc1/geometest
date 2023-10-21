@@ -7,14 +7,57 @@ type queryPromise = {
 
 const modelUsers = {
 
+    verifyEmailExist: async (email: string) => {
+        const conexao: any = await utils.bdConnection()
+        return new Promise<queryPromise>(async (resolve, reject) => {
+            await conexao.promise().query(`
+        SELECT U.EMAIL
+        FROM USUARIO U
+        WHERE U.EMAIL = ?`, [email])
+                .then(([rows]: any) => {
+                    if (rows.length === 0) {
+                        resolve({
+                            status: 200,
+                            value: 'Pronto para cadastrar'
+                        })
+                    }
+                    else
+                        resolve({
+                            status: 410,
+                            value: 'Tem esse emei já, cabaço'
+                        })
+                })
+                .catch((err: any) => {
+                    reject({
+                        status: 400,
+                        value: err
+                    })
+                })
+                .then(() => conexao.end())
+        })
+    },
     //cadastro
     register: async (nome: string, email: string, senha: string, date: string) => {
         const conexao: any = await utils.bdConnection()
         return new Promise<queryPromise>(async (resolve, reject) => {
-            await conexao.query(`
-        SELECT U.EMAIL
-        FROM USUARIO U
-        WHERE U.EMAIL = ?`, [email],
+            conexao.promise().query(`
+                        INSERT INTO 
+                        USUARIO 
+                        VALUES('0', ?, ?, ?, ?)`, [nome, email, senha, date])
+                .then(([rows]: any) => {
+                    resolve({
+                        status: 200,
+                        value: rows.insertId
+                    })
+                })
+                .catch((err: any) => {
+                    reject({
+                        status: 400,
+                        value: err
+                    })
+                })
+                .then(() => conexao.end())
+        /* 
                 (err: any, result: []) => {
                     if (err) {
                         reject({
@@ -23,11 +66,7 @@ const modelUsers = {
                         })
                     }
                     else {
-                        if (result.length === 0) {
-                            conexao.query(`
-                        INSERT INTO 
-                        USUARIO 
-                        VALUES('0', ?, ?, ?, ?)`, [nome, email, senha, date],
+                        
                                 (err: any, result: any) => {
                                     if (err) {
                                         reject({
@@ -43,15 +82,9 @@ const modelUsers = {
                                     }
                                 })
                         }
-                        else
-                            resolve({
-                                status: 410,
-                                value: 'Tem esse emei já, cabaço'
-                            })
-                    }
                 })
 
-        })
+         */})
     },
 
     //login
@@ -94,7 +127,7 @@ const modelUsers = {
                  }
              )
   */
-                .then(async([rows]: any) => {
+                .then(async ([rows]: any) => {
                     if (rows.length) {
                         if (await utils.compareHash(senha, rows[0].SENHA)) {
                             resolve({
@@ -116,12 +149,13 @@ const modelUsers = {
                         })
                     }
                 })
-                .catch((err:any)=>{
+                .catch((err: any) => {
                     reject({
                         status: 400,
                         value: err
                     })
                 })
+                .then(() => conexao.end())
         })
     }
 }
