@@ -28,7 +28,7 @@ const modelUsers = {
                         INSERT INTO 
                         USUARIO 
                         VALUES('0', ?, ?, ?, ?)`, [nome, email, senha, date],
-                                (err: any, result:any) => {
+                                (err: any, result: any) => {
                                     if (err) {
                                         reject({
                                             status: 410,
@@ -50,7 +50,7 @@ const modelUsers = {
                             })
                     }
                 })
-                
+
         })
     },
 
@@ -58,31 +58,49 @@ const modelUsers = {
     login: async (email: string, senha: string) => {
         const conexao: any = await utils.bdConnection()
         return new Promise<queryPromise>(async (resolve, reject) => {
-            await conexao.query(`
+            await conexao.promise().query(`
         SELECT U.ID, U.SENHA
-    FROM USUARIO U
-    WHERE U.EMAIL = ? `, [email],
-                async (err: any, result: any) => {
-                    if (err) {
-                        reject({
-                            status: 400,
-                            value: 'Erro:' + err.sqlMessage
-                        })
-                    }
-                    else {
-                        if (result.length) {
-                            if (await utils.compareHash(senha, result[0].SENHA)) {
-                                resolve({
-                                    status: 200,
-                                    value: result[0].ID
-                                })
-                            }
-                            else {
-                                resolve({
-                                    status: 404,
-                                    value: 'Tem nada disso aqui não, sai vazado'
-                                })
-                            }
+        FROM USUARIO U
+        WHERE U.EMAIL = ? `, [email])
+                /*  async (err: any, result: any) => {
+                     if (err) {
+                         reject({
+                             status: 400,
+                             value: 'Erro:' + err.sqlMessage
+                         })
+                     }
+                     else {
+                         if (result.length) {
+                             if (await utils.compareHash(senha, result[0].SENHA)) {
+                                 resolve({
+                                     status: 200,
+                                     value: result[0].ID
+                                 })
+                             }
+                             else {
+                                 resolve({
+                                     status: 404,
+                                     value: 'Tem nada disso aqui não, sai vazado'
+                                 })
+                             }
+                         }
+                         else {
+                             resolve({
+                                 status: 404,
+                                 value: 'Tem nada disso aqui não, sai vazado'
+                             })
+                         }
+                     }
+                 }
+             )
+  */
+                .then(async([rows]: any) => {
+                    if (rows.length) {
+                        if (await utils.compareHash(senha, rows[0].SENHA)) {
+                            resolve({
+                                status: 200,
+                                value: rows[0].ID
+                            })
                         }
                         else {
                             resolve({
@@ -91,9 +109,19 @@ const modelUsers = {
                             })
                         }
                     }
-                }
-            )
-            
+                    else {
+                        resolve({
+                            status: 404,
+                            value: 'Tem nada disso aqui não, sai vazado'
+                        })
+                    }
+                })
+                .catch((err:any)=>{
+                    reject({
+                        status: 400,
+                        value: err
+                    })
+                })
         })
     }
 }
