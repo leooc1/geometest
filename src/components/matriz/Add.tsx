@@ -42,9 +42,9 @@ export default function Add() {
     }
 
     return (
-        <div className={` ${activate === 'add' ? 'container-menu' : 'hidden'} `}>
+        <section className={` ${activate === 'add' ? 'container-menu' : 'hidden'} `}>
             <div className='w-full flex flex-col gap-4 scroll-add'>
-                <h2 className='text-3xl'>Adicionar forma</h2>
+                <p className='text-3xl'>Adicionar forma</p>
                 <hr className='invert' />
                 <ul className='flex gap-3'>
                     <li>
@@ -80,6 +80,6 @@ export default function Add() {
                     {active === 2 ? <Upload /> : null}
                     <ListItens />
             </div>
-        </div>
+        </section>
     )
 }

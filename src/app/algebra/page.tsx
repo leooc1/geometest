@@ -42,7 +42,7 @@ export default function Algebra() {
 
     }, [valueA, valueB, valueC])
     return (
-        <div className='w-full h-screen'>
+        <main className='w-full h-screen'>
             <section className='flex justify-around mt-5'>
                 <input onChange={(e) => {
                     if (e.target.value === '') {
@@ -81,6 +81,6 @@ export default function Algebra() {
                     data={data}
                 />
             </VictoryChart>
-        </div>
+        </main>
     )
 }

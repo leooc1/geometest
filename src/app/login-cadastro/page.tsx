@@ -9,12 +9,12 @@ export default function LoginCadastro() {
   },[])
   return (
     <>
-    <div className='flex justify-center items-center relative w-full h-full min-h-screen bg-gray-300'>
+    <main className='flex justify-center items-center relative w-full h-full min-h-screen bg-gray-300'>
         <div className='relative flex justify-center items-center w-full min-h-[515px]'>
           <Login/>
           <Cadastro/>
         </div>
-    </div>
+    </main>
     </>
   )
 }

@@ -1,0 +1,75 @@
+.entry-g {
+    position: relative;
+    animation: G 1ms ease-in-out;
+    animation-timeline: view();
+    animation-range: cover 0 cover 50%;
+}
+
+.exit-g {
+    position: relative;
+    animation: G 1ms ease-in-out reverse;
+    animation-timeline: view();
+    animation-range: cover 50% cover 100%;
+}
+
+/********************************************/
+.entry-bar {
+    position: relative;
+    animation: Bar 1ms ease-in-out;
+    animation-timeline: view();
+    animation-range: cover 0 cover 50%;
+}
+
+.exit-bar {
+    position: relative;
+    animation: Bar 1ms ease-in-out reverse;
+    animation-timeline: view();
+    animation-range: cover 50% cover 100%;
+}
+
+/********************************************/
+.entry-x {
+    position: relative;
+    animation: X 1ms ease-in-out;
+    animation-timeline: view();
+    animation-range: cover 0 cover 50%;
+}
+
+.exit-x {
+    position: relative;
+    animation: X 1ms ease-in-out reverse;
+    animation-timeline: view();
+    animation-range: cover 50% cover 100%;
+}
+
+@keyframes G {
+    from {
+        left: -100vw;
+    }
+
+    to {
+        left: 0;
+    }
+}
+
+@keyframes Bar {
+    from {
+        opacity: 0;
+        top: 30vh;
+    }
+
+    to {
+        opacity: 1;
+        top: 0;
+    }
+}
+
+@keyframes X {
+    from {
+        left: 100vw;
+    }
+
+    to {
+        left: 0;
+    }
+}

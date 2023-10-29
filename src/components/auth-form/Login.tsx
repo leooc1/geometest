@@ -45,7 +45,7 @@ export default function Login() {
         <div className='flip-form ' id='login'>
             <AsideLogin mostrarSenha={verSenha} />
             <section className='w-80 bg-secondary p-5'>
-                <p className='text-3xl font-medium'>Entrar</p>
+                <h1 className='text-3xl font-medium'>Entrar</h1>
                 <Link href='/'>
                     <Image className='float-right -mt-7' src={'/logos/logo.png'} alt='logo' width={70} height={70} />
                 </Link>

@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react'
-import Download from './Download'
 import utilsToken from '@/components/utils/token'
+import { useState } from 'react'
+import Download from './Download'
 
 export default function Profile() {
     const [idUser, setId] = useState('')

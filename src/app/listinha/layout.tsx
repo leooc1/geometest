@@ -15,9 +15,9 @@ export default function ListaLayout({
     children: React.ReactNode
 }) {
     return (
-        <div>
+        <main>
             {children}
             <p className='text-center'>listenha</p>
-        </div>
+        </main>
     )
 }

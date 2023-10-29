@@ -10,7 +10,7 @@ export default function Matriz() {
   return (
     <>
 
-      <div className='w-full h-screen bg-secondary'>
+      <main className='w-full h-screen bg-secondary'>
           <MatrizProvider>
             <>
               <Objects />
@@ -20,7 +20,7 @@ export default function Matriz() {
               <Config />
             </>
           </MatrizProvider>
-      </div>
+      </main>
     </>
   )
 }

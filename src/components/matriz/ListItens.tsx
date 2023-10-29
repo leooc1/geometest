@@ -54,13 +54,13 @@ export default function ListItens() {
             select(Number(item.id))
             setTimeout(()=>{
               select(Number(item.id))
+            },100)
+            setTimeout(()=>{
+              select(Number(item.id))
+            },200)
+            setTimeout(()=>{
+              select(Number(item.id))
             },300)
-            setTimeout(()=>{
-              select(Number(item.id))
-            },600)
-            setTimeout(()=>{
-              select(Number(item.id))
-            },900)
           }}>{item.type}-{item.id}</li>)}
       </ul>
     </div>

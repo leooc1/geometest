@@ -7,7 +7,7 @@ import utilsToken from '@/components/utils/token'
 
 export default function Fisica() {
     return (
-        <div className='w-screen h-screen'>
+        <main className='w-screen h-screen'>
             <Canvas shadows camera={{ position: [10, 10, 10], fov: 80 }}>
                 <color attach='background' args={['#ececec']} />
                 <Suspense>
@@ -29,6 +29,6 @@ export default function Fisica() {
                     </Physics>
                 </Suspense>
             </Canvas>
-        </div>
+        </main>
     )
 }

@@ -50,8 +50,7 @@ export default function Objects() {
             <mesh>
                 <OrbitControls />
                 <ambientLight intensity={4} />
-                {/* <directionalLight position={[10,10,10]} intensity={2} /> */}
-                {/* <directionalLight position={[-10,-10,-10]} intensity={2} /> */}
+                <directionalLight position={[10,10,10]} intensity={1} />
                 {render.map((item: Object, index: string) => {
                     return <ObjectModels key={index} nameID={index} color={item.color} type={item.type} wireframe={item.wireframe} position={item.position} rotate={item.rotation} scale={item.scale} focus={select} />
                 })}

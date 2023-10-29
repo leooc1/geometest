@@ -1,8 +1,8 @@
 import utilsToken from '@/components/utils/token';
 import { MatrizContext } from '@/context/MatrizContext';
-import Image from 'next/image'
+import Image from 'next/image';
 import Link from 'next/link';
-import React, { useContext } from 'react'
+import { useContext } from 'react';
 
 export default function Download() {
     const { render } = useContext(MatrizContext)

@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import url('./form.css');
+@import url('./gxAnimation.css');
 
 *{scroll-behavior: smooth;}
 
