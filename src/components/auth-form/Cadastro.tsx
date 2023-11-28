@@ -69,11 +69,6 @@ export default function Cadastro() {
                 </form>
                 <hr className='invert my-5 mx-2' />
                 <div className='flex flex-col md:hidden'>
-                    <div className='flex justify-around'>
-                        <button className='w-10 h-10 rounded-full font-bold bg-primary'>G</button>
-                        <button className='w-10 h-10 rounded-full font-bold bg-primary'>G</button>
-                        <button className='w-10 h-10 rounded-full font-bold bg-primary'>G</button>
-                    </div>
                     <p className='text-primary mt-5 flex items-center'>Já possui conta?
                         <button onClick={() => {
                             document.getElementById('cadastro')?.classList.toggle('form-hidden')

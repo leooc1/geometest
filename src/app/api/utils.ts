@@ -12,23 +12,13 @@ const utils = {
         const MYSQLPASSWORD = process.env.MYSQLPASSWORD
         const MYSQLHOST = process.env.MYSQLHOST
         const MYSQLDATABASE = process.env.MYSQLDATABASE
-        // (`mysql://${MYSQLUSER}:${MYSQLPASSWORD}@${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}`)
-        /* const conexao: Connection = await mysql2.createConnection(`mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`)
-
-        return new Promise((resolve, reject) => {
-            conexao.connect((err) => {
-                if (err) {
-                    console.log(err);
-                    reject
-                } else {
-                    console.log('Banco conectado!')
-                    resolve(conexao)
-                }
-            })
-        }) */
-        // const pool = await mysql2.createPool(`mysql://${MYSQLUSER}:${MYSQLPASSWORD}@${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}`)
         const pool = await mysql2.createPool({
-            uri: `mysql://${MYSQLUSER}:${MYSQLPASSWORD}@${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}`,
+            // uri: `mysql://${MYSQLUSER}:${MYSQLPASSWORD}@${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}`,
+            user: 'root',
+            port:3306,
+            host: 'localhost',
+            password: '',
+            database: 'geometrix',
             waitForConnections: true,
             connectionLimit: 10,
             maxIdle: 10,

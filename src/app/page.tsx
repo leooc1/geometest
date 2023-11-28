@@ -22,15 +22,19 @@ export default function Home() {
       <main className="bg-secondary w-full h-full scroll-smooth">
         <NavBar />
         <section id="home" className="h-[200vh] w-full flex flex-col justify-evenly bg-secondary overflow-x-clip">
-          <p className="font-semibold text-center text-9xl tracking-widest">
-            <span className="exit-g">G</span>
-            <span className="exit-bar">/</span>
-            <span className="exit-x">X</span>
-          </p>
-          <p className="font-semibold text-center text-9xl sticky top-1/2  tracking-widest">
-            <span className="entry-g">G</span>
-            <span className="entry-bar">/</span>
-            <span className="entry-x">X</span>
+          <p className="font-semibold text-9xl flex justify-center gap-2 sticky top-1/2 -translate-y-1/2">
+            <span className={`relative left-[-388.889px]`} style={{
+              // transition: '.5s',
+              left: `-${move}px`
+            }}>G</span>
+            <span className={`relative bottom-[-437.5px]`} style={{
+              // transition: '.5s',
+              bottom: `-${move}px`
+            }}>/</span>
+            <span className={`relative left-[-87.5px]`} style={{
+              // transition: '.5s',
+              left: `-${move / 10}px`
+            }}>X</span>
           </p>
         </section>
         <div id="sobre" className="h-screen w-full flex justify-center items-center bg-gray-700 text-white tracking-[3px] uppercase"><Link href='#'>clica aí pra nada</Link></div>
